@@ -1,0 +1,7 @@
+<h1>Lists#show</h1>
+<p>Find me in app/views/lists/show.html.erb</p>
+<p><%= link_to "Create a bookmark", new_list_bookmark_path(params[:id]) %></p>
+<h2>Bookmarks</h2>
+<% Bookmark.where(list_id: @list.id).each do |bookmark|  %>
+  <p><%= bookmark.comment %> | <%= link_to "Delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
+<% end  %>
