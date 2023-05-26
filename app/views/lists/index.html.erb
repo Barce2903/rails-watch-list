@@ -3,10 +3,10 @@
   <p>Top rated</p>
 </div>
 <div class="container">
-<div class="row">
+<div class="row mt-5">
   <% @lists.each do |list| %>
     <div class="col-4">
-      <div class="m-2 bg-warning text-center">
+      <div class="movie-card m-2 d-flex justify-content-center align-items-center" style="background-image: url('https://zone-critique.com/wp-content/uploads/2020/05/cannes-film-pellicule.jpg')">
         <%= link_to list.name, list_path(list.id) %></p>
       </div>
     </div>

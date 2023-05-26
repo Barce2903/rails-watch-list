@@ -1,7 +1,25 @@
-<h1>Lists#show</h1>
-<p>Find me in app/views/lists/show.html.erb</p>
-<p><%= link_to "Create a bookmark", new_list_bookmark_path(params[:id]) %></p>
-<h2>Bookmarks</h2>
-<% Bookmark.where(list_id: @list.id).each do |bookmark|  %>
-  <p><%= bookmark.comment %> | <%= link_to "Delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
-<% end  %>
+<div id="header-index" style="background-image: url('https://zone-critique.com/wp-content/uploads/2020/05/cannes-film-pellicule.jpg')">
+  <h1><%= @list.name %></h1>
+</div>
+<div class="container">
+  <%= link_to "Add a movie", new_list_bookmark_path(params[:id]), class: "mt-2 btn btn-success" %>
+  <div class="row mt-2">
+    <% Bookmark.where(list_id: @list.id).each do |bookmark|  %>
+      <div class="col-4">
+        <div class="card shadow" style="height: 100%">
+          <div class="movie-picture" style="background-image: url('<%= Movie.find(bookmark.movie_id).poster_url %>')"></div>
+          <div class="p-2">
+            <h5><%= Movie.find(bookmark.movie_id).title %> · <%= Movie.find(bookmark.movie_id).rating %> <i class="fa-solid fa-star" style="color: #fff700;"></i></h5>
+            <p><%= Movie.find(bookmark.movie_id).overview %></p>
+          </div>
+          <div class="delete-link p-2 d-flex justify-content-between">
+            <div>
+              <i class="fa-solid fa-quote-left"></i> <%= bookmark.comment %>
+            </div>
+            <%= link_to "Delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

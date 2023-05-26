@@ -11,3 +11,14 @@
     color: white;
   }
 }
+
+.movie-card {
+  background-position: center;
+  background-size: cover;
+  height: 150px;
+  a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+  }
+}
