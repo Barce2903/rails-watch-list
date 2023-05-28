@@ -2,5 +2,6 @@
 <p>Find me in app/views/lists/new.html.erb</p>
 <%= simple_form_for(@list) do |f| %>
   <%= f.input :name %>
+  <%= f.input :photo, as: :file %>
   <%= f.submit %>
 <% end %>
