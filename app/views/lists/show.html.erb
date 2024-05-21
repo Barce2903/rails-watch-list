@@ -3,13 +3,15 @@
 <div class="row">
   <% @list.movies.each do |movie| %>
     <div class="col-3">
-      <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200" alt="Card image cap">
+      <div class="card" style="height: 100%;">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w500<%= movie.poster_url %>" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title"><%= movie.title %></h5>
           <p class="card-text"><%= movie.overview %></p>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 0 16px;">
           <p class="card-text"><%= movie.rating %>/10</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <%= link_to 'Delete', bookmark_path(Bookmark.find_by(list_id: @list.id, movie_id: movie.id)), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
         </div>
       </div>
     </div>
